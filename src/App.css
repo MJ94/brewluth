@@ -30,3 +30,13 @@
     transform: rotate(360deg);
   }
 }
+
+#map {
+  height: 100vh;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
