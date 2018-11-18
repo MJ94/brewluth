@@ -4,6 +4,10 @@ import './App.css';
 import axios from 'axios';
 
 class App extends Component {
+  state = {
+    breweries: []
+  }
+
   componentDidMount() {
     this.getVenues()
     this.loadMap()
@@ -29,6 +33,9 @@ class App extends Component {
 
     axios.get(endPoint + new URLSearchParams(parameters))
     .then(res => {
+      this.setState({
+        breweries: res.data.response.groups[0].items
+      });
       console.log(res);
     })
     .catch((err) => {
