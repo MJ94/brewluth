@@ -48,6 +48,13 @@ class App extends Component {
       center: {lat: 46.785039, lng: -92.107418},
       zoom: 8
     });
+
+    const marker = new window.google.maps.Marker({
+    position: {lat: 46.785039, lng: -92.107418},
+    map: map,
+    title: 'Hello World!'
+  });
+
   }
 
   render() {
