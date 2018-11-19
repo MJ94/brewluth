@@ -10,7 +10,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getVenues()
-    this.loadMap()
   }
 
   loadMap = () => {
@@ -35,7 +34,7 @@ class App extends Component {
     .then(res => {
       this.setState({
         breweries: res.data.response.groups[0].items
-      });
+      }, this.loadMap());
       console.log(res);
     })
     .catch((err) => {
@@ -46,16 +45,18 @@ class App extends Component {
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 46.785039, lng: -92.107418},
-      zoom: 8
+      zoom: 13.5
     });
 
-    const marker = new window.google.maps.Marker({
-    position: {lat: 46.785039, lng: -92.107418},
-    map: map,
-    title: 'Hello World!'
+    this.state.breweries.map(stateBreweries => {
+      const marker = new window.google.maps.Marker({
+      position: {lat: stateBreweries.venue.location.lat, lng: stateBreweries.venue.location.lng},
+      map: map,
+      title: 'Hello World!'
+    })
   });
 
-  }
+}
 
   render() {
     return (
