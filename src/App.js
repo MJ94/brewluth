@@ -8,6 +8,7 @@ class App extends Component {
     breweries: []
   }
 
+// Get venue data from Foursquare when component mounts
   componentDidMount() {
     this.getVenues()
   }
@@ -18,6 +19,7 @@ class App extends Component {
     window.initMap = this.initMap;
   }
 
+// Data needed when using Foursquare API
   getVenues = () => {
     const foursquareClientId = process.env.REACT_APP_FOURSQUARE_CLIENT_ID;
     const foursquareClientSecret = process.env.REACT_APP_FOURSQUARE_CLIENT_SECRET;
@@ -30,6 +32,7 @@ class App extends Component {
       v: "20181811"
     }
 
+// Get data from Foursquare and add venues (breweries) to state
     axios.get(endPoint + new URLSearchParams(parameters))
     .then(res => {
       this.setState({
@@ -42,12 +45,14 @@ class App extends Component {
     })
   }
 
+// Initialize the map per Google Maps JavaScript API
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 46.785039, lng: -92.107418},
       zoom: 13.5
     });
 
+// Map through breweries in state and add a marker for each venue
     this.state.breweries.map(stateBreweries => {
       const marker = new window.google.maps.Marker({
       position: {lat: stateBreweries.venue.location.lat, lng: stateBreweries.venue.location.lng},
@@ -69,12 +74,12 @@ class App extends Component {
 }
 
 const loadScript = (source) => {
-  const firstScriptTag = window.document.getElementsByTagName("script")[0];
-  const script = window.document.createElement("script");
-  script.src = source;
-  script.async = true;
-  script.defer = true;
-  firstScriptTag.parentNode.insertBefore(script, firstScriptTag)
+const firstScriptTag = window.document.getElementsByTagName("script")[0];
+const script = window.document.createElement("script");
+script.src = source;
+script.async = true;
+script.defer = true;
+firstScriptTag.parentNode.insertBefore(script, firstScriptTag)
 }
 
 export default App;
