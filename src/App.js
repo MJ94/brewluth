@@ -52,13 +52,29 @@ class App extends Component {
       zoom: 13.5
     });
 
+// Create infowindow outside of loop
+    const infowindow = new window.google.maps.InfoWindow({
+    });
+
 // Map through breweries in state and add a marker for each venue
     this.state.breweries.map(stateBreweries => {
+      const content = `
+      <h4>${stateBreweries.venue.name}</h4 <br>
+      <p>${stateBreweries.venue.location.formattedAddress[0]}</p>
+      <p>${stateBreweries.venue.location.formattedAddress[1]}</p>
+      `
+
       const marker = new window.google.maps.Marker({
       position: {lat: stateBreweries.venue.location.lat, lng: stateBreweries.venue.location.lng},
       map: map,
-      title: 'Hello World!'
+      title: stateBreweries.venue.name
     })
+
+// Update content of and open an info window when marker clicked
+    marker.addListener('click', function () {
+      infowindow.setContent(content)
+      infowindow.open(map, marker)
+    });
   });
 
 }
@@ -73,13 +89,14 @@ class App extends Component {
   }
 }
 
-const loadScript = (source) => {
-const firstScriptTag = window.document.getElementsByTagName("script")[0];
-const script = window.document.createElement("script");
-script.src = source;
-script.async = true;
-script.defer = true;
-firstScriptTag.parentNode.insertBefore(script, firstScriptTag)
+// Code to load Google Maps without using any external components
+  const loadScript = (source) => {
+  const firstScriptTag = window.document.getElementsByTagName("script")[0];
+  const script = window.document.createElement("script");
+  script.src = source;
+  script.async = true;
+  script.defer = true;
+  firstScriptTag.parentNode.insertBefore(script, firstScriptTag)
 }
 
 export default App;
