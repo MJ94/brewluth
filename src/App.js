@@ -67,7 +67,7 @@ class App extends Component {
       const marker = new window.google.maps.Marker({
       position: {lat: stateBreweries.venue.location.lat, lng: stateBreweries.venue.location.lng},
       map: map,
-      title: stateBreweries.venue.name
+      animation: window.google.maps.Animation.DROP
     })
 
 // Update content of and open an info window when marker clicked
