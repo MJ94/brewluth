@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import SideBar from './components/SideBar.js';
 
 class App extends Component {
   state = {
@@ -81,9 +82,12 @@ class App extends Component {
 
   render() {
     return (
+      <div className="App">
+        <SideBar />
       <main>
         <div id="map"></div>
       </main>
+    </div>
 
     );
   }
