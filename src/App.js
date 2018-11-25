@@ -9,7 +9,7 @@ class App extends Component {
     breweries: []
   }
 
-// Get venue data from Foursquare when component mounts
+  // Get venue data from Foursquare when component mounts
   componentDidMount() {
     this.getVenues()
 
@@ -27,7 +27,7 @@ class App extends Component {
     window.initMap = this.initMap;
   }
 
-// Data needed when using Foursquare API
+  // Data needed when using Foursquare API
   getVenues = () => {
     const foursquareClientId = process.env.REACT_APP_FOURSQUARE_CLIENT_ID;
     const foursquareClientSecret = process.env.REACT_APP_FOURSQUARE_CLIENT_SECRET;
@@ -40,7 +40,7 @@ class App extends Component {
       v: "20181811"
     }
 
-// Get data from Foursquare and add venues (breweries) to state
+    // Get data from Foursquare and add venues (breweries) to state
     axios.get(endPoint + new URLSearchParams(parameters))
     .then(res => {
       this.setState({
@@ -53,18 +53,18 @@ class App extends Component {
     })
   }
 
-// Initialize the map per Google Maps JavaScript API
+  // Initialize the map per Google Maps JavaScript API
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 46.785039, lng: -92.107418},
       zoom: 13.5
     });
 
-// Create infowindow outside of loop
+    // Create infowindow outside of loop
     const infowindow = new window.google.maps.InfoWindow({
     });
 
-// Map through breweries in state and add a marker for each venue
+    // Map through breweries in state and add a marker for each venue
     this.state.breweries.map(stateBreweries => {
       const content = `
       <h4>${stateBreweries.venue.name}</h4 <br>
@@ -78,7 +78,7 @@ class App extends Component {
       animation: window.google.maps.Animation.DROP
     })
 
-// Update content of and open an info window when marker clicked
+    // Update content of and open an info window when marker clicked
     marker.addListener('click', function () {
       infowindow.setContent(content)
       infowindow.open(map, marker)
@@ -100,7 +100,7 @@ class App extends Component {
   }
 }
 
-// Code to load Google Maps without using any external components
+  // Code to load Google Maps without using any external components
   const loadScript = (source) => {
   const firstScriptTag = window.document.getElementsByTagName("script")[0];
   const script = window.document.createElement("script");
