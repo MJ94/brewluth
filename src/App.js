@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import SideBar from './components/SideBar.js';
+import Map from './components/Map.js';
 
 class App extends Component {
   state = {
@@ -101,8 +102,8 @@ class App extends Component {
     return (
       <div className="App">
         <SideBar />
-      <main>
-        <div id="map"></div>
+      <main id="map">
+        <Map {...this.state} />
       </main>
     </div>
 
