@@ -12,6 +12,13 @@ class App extends Component {
 // Get venue data from Foursquare when component mounts
   componentDidMount() {
     this.getVenues()
+
+    // Alerts user if there are any issues loading the  Google Maps API
+    window.gm_authFailure = () => {
+      alert(
+        "This page didn't load Google Maps correctly. See the JavaScript console for technical details."
+      )
+    }
   }
 
   loadMap = () => {
