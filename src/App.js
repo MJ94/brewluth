@@ -49,7 +49,8 @@ class App extends Component {
       console.log(res);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`Error in Axios get attempt: ${err}`);
+      alert("There was an error fetching venue data; please see the JavaScript console for technical details.")
     })
   }
 
