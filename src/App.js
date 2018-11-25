@@ -67,6 +67,10 @@ class App extends Component {
 
     // Map through breweries in state and add a marker for each venue
     this.state.breweries.map(stateBreweries => {
+      const position = {
+        lat: stateBreweries.venue.location.lat,
+        lng: stateBreweries.venue.location.lng
+      }
       const content = `
       <h4>${stateBreweries.venue.name}</h4 <br>
       <p>${stateBreweries.venue.location.formattedAddress[0]}</p>
@@ -74,7 +78,7 @@ class App extends Component {
       `
 
       const marker = new window.google.maps.Marker({
-      position: {lat: stateBreweries.venue.location.lat, lng: stateBreweries.venue.location.lng},
+      position: position,
       map: map,
       animation: window.google.maps.Animation.DROP
     })
