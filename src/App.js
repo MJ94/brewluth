@@ -101,8 +101,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SideBar />
-      <main id="map">
+      <main id="main">
+        <SideBar {...this.state} />
         <Map {...this.state} />
       </main>
     </div>

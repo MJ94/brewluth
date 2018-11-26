@@ -5,7 +5,7 @@ class ListItem extends Component {
   render() {
     return (
       <li className="listItem">
-        This is just placeholder text.
+        {this.props.brewery.venue.name}
       </li>
     );
   }
