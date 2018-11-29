@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ListItem from './ListItem.js';
 
-class VenueList extends Component {
-  render() {
-    return (
-      <ol id="venueList">
-        {this.props.breweries &&
-          this.props.breweries.map((brewery, key) => (
-            <ListItem key={key} brewery={brewery}/>
-          ))}
-      </ol>
-    );
-  }
-}
+const VenueList = ({ breweries, whenSideBarBreweryClicked, infowindow, content}) => {
+  return (
+    <ol id="venueList">
+      {breweries &&
+        breweries.map((brewery) => (
+          <ListItem
+            key={brewery.venue.id}
+            venue={brewery.venue}
+            infowindow={infowindow}
+            content={content}
+            whenSideBarBreweryClicked={whenSideBarBreweryClicked}
+          />
+        ))}
+    </ol>
+  );
+};
+
 
 export default VenueList;

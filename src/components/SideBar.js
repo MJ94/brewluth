@@ -8,7 +8,10 @@ class Sidebar extends Component {
         <h1 id="sideBarHeader">Duluth, MN</h1>
         <label>Search Breweries</label>
         <input id="filter" type="search" placeholder="Brewery"></input>
-        <VenueList {...this.props} />
+        <VenueList
+          {...this.props}
+          whenSideBarBreweryClicked={this.props.whenSideBarBreweryClicked}
+          />
       </aside>
     );
   }

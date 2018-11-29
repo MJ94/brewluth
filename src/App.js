@@ -7,7 +7,10 @@ import Map from './components/Map.js';
 
 class App extends Component {
   state = {
-    breweries: []
+    breweries: [],
+    markers: [],
+    infowindow: [],
+    content: []
   }
 
   // Get venue data from Foursquare when component mounts
@@ -26,6 +29,29 @@ class App extends Component {
     const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     loadScript(`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${googleMapsKey}&callback=initMap`)
     window.initMap = this.initMap;
+  }
+
+  whenSideBarBreweryClicked = (breweryListItem) => {
+    console.log(breweryListItem.id)
+    const markers = this.state.markers;
+    const content = `
+    <h4>${breweryListItem.name}</h4 <br>
+    <p>${breweryListItem.location.formattedAddress[0]}</p>
+    <p>${breweryListItem.location.formattedAddress[1]}</p>
+    `;
+
+    markers.map(marker => {
+      if (marker.id === breweryListItem.id) {
+        // window.google.maps.infowindow.setContent(content);
+        // window.google.maps.infowindow.open(this.initMap, marker);
+        console.log(marker.id)
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        setTimeout(function(){ marker.setAnimation(null); }, 750);
+      } else {
+        marker.setAnimation(null);
+        console.log("not a match")
+      }
+    })
   }
 
   // Data needed when using Foursquare API
@@ -89,20 +115,30 @@ class App extends Component {
       animation: animation
     })
 
+    this.setState(() => this.state.markers.push(marker));
+
     // Update content of and open an info window when marker clicked
-    marker.addListener('click', function () {
-      infowindow.setContent(content)
-      infowindow.open(map, marker)
+      marker.addListener("click", () => {
+      this.setState({ content: content });
+      infowindow.setContent(this.state.content);
+      infowindow.open(map, marker);
+
+      if (marker.title === stateBreweries.venue.name) {
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        setTimeout(function(){ marker.setAnimation(null); }, 750);
+      }
+      window.setTimeout(() => {
+        marker.setAnimation(null);
+      }, 3000);
     });
   });
-
-}
+};
 
   render() {
     return (
       <div className="App">
       <main id="main">
-        <SideBar {...this.state} />
+        <SideBar {...this.state} whenSideBarBreweryClicked={this.whenSideBarBreweryClicked} />
         <Map {...this.state} />
       </main>
     </div>
