@@ -45,6 +45,7 @@ class App extends Component {
         // window.google.maps.infowindow.setContent(content);
         // window.google.maps.infowindow.open(this.initMap, marker);
         console.log(marker.id)
+        window.google.maps.event.trigger(marker, 'click')
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         setTimeout(function(){ marker.setAnimation(null); }, 750);
       } else {
