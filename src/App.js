@@ -141,7 +141,7 @@ class App extends Component {
   }
 }
 
-  // Code to load Google Maps without using any external components
+  // Code to load Google Maps without using any external components courtesy of Elharony on YouTube
   const loadScript = (source) => {
   const firstScriptTag = window.document.getElementsByTagName("script")[0];
   const script = window.document.createElement("script");
