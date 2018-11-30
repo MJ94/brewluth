@@ -10,7 +10,6 @@ class App extends Component {
     breweries: [],
     markers: [],
     infowindow: [],
-    content: []
   }
 
   // Get venue data from Foursquare when component mounts
@@ -34,11 +33,6 @@ class App extends Component {
   whenSideBarBreweryClicked = (breweryListItem) => {
     console.log(breweryListItem.id)
     const markers = this.state.markers;
-    const content = `
-    <h4>${breweryListItem.name}</h4 <br>
-    <p>${breweryListItem.location.formattedAddress[0]}</p>
-    <p>${breweryListItem.location.formattedAddress[1]}</p>
-    `;
 
     markers.map(marker => {
       if (marker.id === breweryListItem.id) {
@@ -121,7 +115,7 @@ class App extends Component {
     // Update content of and open an info window when marker clicked
       marker.addListener("click", () => {
       this.setState({ content: content });
-      infowindow.setContent(this.state.content);
+      infowindow.setContent(content);
       infowindow.open(map, marker);
 
       if (marker.title === stateBreweries.venue.name) {
