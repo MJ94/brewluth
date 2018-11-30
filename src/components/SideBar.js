@@ -48,6 +48,7 @@ class Sidebar extends Component {
           placeholder="Brewery"
           onChange={this.handleUpdate}
         />
+      <p id="dataAttribution">All external data courtesy of <a href="https://foursquare.com">Foursquare</a> and <a href="https://maps.google.com">Google Maps</a></p>
         <VenueList
           {...this.props}
           whenSideBarBreweryClicked={this.props.whenSideBarBreweryClicked}
