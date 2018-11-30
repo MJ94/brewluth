@@ -6,6 +6,7 @@ class ListItem extends Component {
   	console.log(this.props.venue)
     return (
       <li
+        aria-labelledby={this.props.venue.name}
         tabIndex="0"
         className="listItem"
         onClick={() => this.props.whenSideBarBreweryClicked(this.props.venue)}>
