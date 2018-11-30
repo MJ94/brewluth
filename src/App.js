@@ -18,7 +18,7 @@ class App extends Component {
     // Alerts user if there are any issues loading the  Google Maps API
     window.gm_authFailure = () => {
       alert(
-        "This page didn't load Google Maps correctly. See the JavaScript console for technical details."
+        "This page didn't load Google Maps correctly. See the JavaScript console for technical details. Have you followed the README closely?"
       )
     }
   }
@@ -71,7 +71,7 @@ class App extends Component {
     })
     .catch((err) => {
       console.log(`Error in Axios get attempt: ${err}`);
-      alert("There was an error fetching venue data; please see the JavaScript console for technical details.")
+      alert("There was an error fetching venue data; please see the JavaScript console for technical details. Have you followed the README closely?")
     })
   }
 
