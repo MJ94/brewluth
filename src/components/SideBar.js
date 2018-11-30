@@ -40,6 +40,7 @@ class Sidebar extends Component {
     return (
       <aside id="sideBarContainer">
         <h1 id="sideBarHeader">Duluth, MN</h1>
+        <h2 id="sideBarSubHead">Brewluth</h2>
         <label>Search Breweries</label>
         <input
           id="filter"

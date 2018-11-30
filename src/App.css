@@ -60,6 +60,10 @@ html, body {
   color: #553300;
 }
 
+#sideBarSubHead {
+  color: #553300;
+}
+
 .listItem {
   list-style: none;
   margin-top: 1rem;
