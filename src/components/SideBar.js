@@ -3,18 +3,20 @@ import VenueList from './VenueList.js';
 
 class Sidebar extends Component {
   state = {
-    query: ""
+    query: "",
+    breweries: []
   }
 
   filterSidebarBreweries = () => {
-    if (this.state.query.trim !== "") {
-      const breweries = this.props.breweries.filter(breweryListing => {
-        breweryListing.venue.name.toLowerCase().includes(this.state.query.toLowerCase())
-      })
+    if (this.state.query.trim() !== "") {
+      const breweries = this.props.breweries.filter(breweryListing =>
+      breweryListing.venue.name.toLowerCase().includes(this.state.query.toLowerCase()));
+      console.log(breweries);
       return breweries;
     }
-    return this.props.venues;
-  }
+    return this.props.breweries;
+  };
+
 
   handleUpdate = (e) => {
     this.setState({
@@ -52,7 +54,7 @@ class Sidebar extends Component {
         <VenueList
           {...this.props}
           whenSideBarBreweryClicked={this.props.whenSideBarBreweryClicked}
-          breweryQuery={this.filterSidebarBreweries()}
+          breweries={this.filterSidebarBreweries()}
           />
       </aside>
     );
