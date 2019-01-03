@@ -3,7 +3,7 @@ Brewluth allows users of the app to discover, filter through, and learn about th
 
 ## Table of Contents
 * [Installation](#Installation)
-* [Additional notes](#Additional notes)
+* [Additional notes](#Additional-notes)
 * [Contributing](#Contributing)
 * [Dependencies](#Dependencies)
 
